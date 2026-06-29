@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Season S&C Program | Performance Bacon S&C</title>
+  <meta name="description" content="In-season soccer strength & conditioning program. Speed, power, and strength maintenance built for 2-game weeks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F6F5F1; --surface: #FFFFFF; --raised: #EEECEA;
+      --border: #DDDBD2; --border2: #C2BFB4;
+      --ink: #111110; --muted: #6A6960; --faint: #AEADA5;
+      --accent: #1B5C34; --accent-d: rgba(27,92,52,.08); --accent-h: #144D2A;
+      --gold: #8A6B0A; --gold-bg: rgba(138,107,10,.09);
+      --speed: #1B4F8A; --speed-bg: rgba(27,79,138,.08);
+      --r: 10px; --rl: 16px;
+    }
+    html { font-size: 16px; -webkit-tap-highlight-color: transparent; }
+    body { background: var(--bg); color: var(--ink); font-family: 'Inter', -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 620px; margin: 0 auto; padding: 0 20px 80px; }
+
+    /* TOP BAR */
+    .top-bar { background: var(--ink); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .top-bar-brand { font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #fff; }
+    .top-bar-tag { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+
+    /* ACCESS BANNER */
+    .access-banner { background: var(--accent); padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+    .access-icon { font-size: 18px; }
+    .access-text { font-size: 13px; font-weight: 600; color: #fff; }
+    .access-text span { opacity: .75; font-weight: 400; }
+
+    /* HERO */
+    .hero { padding: 40px 20px 32px; max-width: 620px; margin: 0 auto; }
+    .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .hero-title { font-size: clamp(32px, 8vw, 48px); font-weight: 900; letter-spacing: -.04em; line-height: .95; margin-bottom: 14px; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 22px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .chip { padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; background: var(--raised); color: var(--muted); border: 1px solid var(--border); }
+    .chip-green { background: var(--accent-d); color: var(--accent); border-color: rgba(27,92,52,.2); }
+    .chip-blue  { background: var(--speed-bg); color: var(--speed); border-color: rgba(27,79,138,.2); }
+
+    /* SECTIONS */
+    .section { padding: 28px 0; border-top: 1px solid var(--border); }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .section-title { font-size: 20px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 10px; }
+    .section-body { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .section-body + .section-body { margin-top: 8px; }
+
+    /* SESSION HEADER */
+    .session-block { border-radius: var(--rl); padding: 20px 22px; margin: 32px 0 20px; }
+    .session-block-a { background: var(--ink); color: #fff; }
+    .session-block-b { background: var(--speed); color: #fff; }
+    .sess-tag { font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 4px; }
+    .sess-name { font-size: 22px; font-weight: 900; letter-spacing: -.03em; }
+    .sess-sub  { font-size: 13px; color: rgba(255,255,255,.65); margin-top: 4px; }
+    .sess-chips { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .sess-chip { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: rgba(255,255,255,.12); color: rgba(255,255,255,.85); }
+    .sess-goal { font-size: 13px; color: rgba(255,255,255,.75); margin-top: 12px; line-height: 1.6; border-top: 1px solid rgba(255,255,255,.12); padding-top: 12px; }
+
+    /* DAY CARD */
+    .session-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--rl); margin-bottom: 12px; overflow: hidden; }
+
+    /* BLOCK LABEL */
+    .block-label { padding: 10px 18px 4px; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+
+    /* EXERCISE ROW */
+    .ex-row { display: flex; align-items: flex-start; gap: 12px; padding: 13px 18px; border-top: 1px solid var(--border); }
+    .ex-num { width: 22px; height: 22px; border-radius: 50%; background: var(--raised); border: 1px solid var(--border2); font-size: 11px; font-weight: 700; color: var(--muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .ex-num-a { background: rgba(17,17,16,.07); border-color: rgba(17,17,16,.2); color: var(--ink); }
+    .ex-num-b { background: var(--speed-bg); border-color: rgba(27,79,138,.25); color: var(--speed); }
+    .ex-body { flex: 1; min-width: 0; }
+    .ex-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .ex-note { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .ex-params { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+    .param { font-size: 12px; font-weight: 700; background: var(--raised); border: 1px solid var(--border); border-radius: 6px; padding: 3px 9px; color: var(--muted); white-space: nowrap; }
+    .param-str { background: var(--accent-d); color: var(--accent); border-color: rgba(27,92,52,.2); }
+    .param-spd { background: var(--speed-bg); color: var(--speed); border-color: rgba(27,79,138,.2); }
+    .ex-tag { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; margin-bottom: 5px; }
+    .ex-tag-prehab { background: var(--gold-bg); color: var(--gold); }
+
+    /* SCHEDULE GRID */
+    .schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 14px; }
+    .sg-day { text-align: center; border-radius: 8px; padding: 10px 4px; }
+    .sg-day-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--faint); margin-bottom: 5px; }
+    .sg-day-content { font-size: 11px; font-weight: 700; line-height: 1.3; }
+    .sg-match { background: var(--ink); color: #fff; }
+    .sg-match .sg-day-content { color: #fff; }
+    .sg-match .sg-day-label { color: rgba(255,255,255,.5); }
+    .sg-sc { background: var(--accent-d); border: 1.5px solid rgba(27,92,52,.25); }
+    .sg-sc .sg-day-content { color: var(--accent); }
+    .sg-speed { background: var(--speed-bg); border: 1.5px solid rgba(27,79,138,.25); }
+    .sg-speed .sg-day-content { color: var(--speed); }
+    .sg-rec { background: var(--raised); }
+    .sg-rec .sg-day-content { color: var(--muted); }
+    .sg-note { margin-top: 12px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* SPRINT CARD */
+    .sprint-card { background: var(--speed-bg); border: 1.5px solid rgba(27,79,138,.2); border-radius: var(--rl); margin: 0 0 12px; overflow: hidden; }
+    .sprint-header { padding: 14px 18px 10px; border-bottom: 1px solid rgba(27,79,138,.15); }
+    .sprint-title { font-size: 13px; font-weight: 800; color: var(--speed); letter-spacing: -.01em; }
+    .sprint-rule { font-size: 12px; color: var(--speed); opacity: .75; margin-top: 3px; }
+
+    /* COND BLOCK */
+    .cond-block { margin: 0 18px 18px; background: var(--raised); border: 1px solid var(--border); border-radius: var(--r); padding: 14px 16px; }
+    .cond-label { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .cond-detail { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* PROGRESSION TABLE */
+    .prog-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+    .prog-table th { text-align: left; padding: 9px 12px; background: var(--raised); border-bottom: 2px solid var(--border2); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .prog-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .prog-table tr:last-child td { border-bottom: none; }
+    .prog-table tr:nth-child(even) td { background: var(--bg); }
+    .prog-table td:first-child { font-weight: 700; color: var(--ink); white-space: nowrap; }
+    .prog-table td + td { color: var(--muted); }
+
+    /* INFO BOX */
+    .info-box { border-radius: var(--r); padding: 16px; margin-top: 14px; font-size: 13px; line-height: 1.65; }
+    .info-box-green { background: var(--accent-d); border: 1.5px solid rgba(27,92,52,.2); color: var(--ink); }
+    .info-box-blue  { background: var(--speed-bg); border: 1.5px solid rgba(27,79,138,.2); color: var(--ink); }
+    .info-box strong { font-weight: 700; }
+
+    /* RULES */
+    .rules-list { list-style: none; padding: 0; }
+    .rules-list li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14px; line-height: 1.6; }
+    .rules-list li:first-child { border-top: none; }
+    .rule-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .rule-text { color: var(--muted); }
+    .rule-text strong { color: var(--ink); }
+
+    /* CTA */
+    .cta-block { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--rl); padding: 28px 24px; text-align: center; margin-top: 32px; }
+    .cta-badge { display: inline-block; background: var(--accent-d); color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; margin-bottom: 14px; }
+    .cta-title { font-size: 22px; font-weight: 900; letter-spacing: -.03em; margin-bottom: 10px; }
+    .cta-body  { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 22px; }
+    .btn { display: block; padding: 15px 24px; border-radius: var(--r); font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; transition: background .15s; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-h); }
+    .cta-note { margin-top: 12px; font-size: 12px; color: var(--faint); }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 4px 0; }
+
+    /* FOOTER */
+    .footer { text-align: center; font-size: 11px; color: var(--faint); padding: 32px 20px; line-height: 2; }
+
+    @media print {
+      .top-bar, .access-banner, .cta-block, .footer { display: none; }
+      body { background: white; }
+      .session-card { break-inside: avoid; border: 1px solid #ccc; }
+      .session-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-brand">Performance Bacon S&C</div>
+  <div class="top-bar-tag">In-Season Program</div>
+</div>
+
+<div class="access-banner">
+  <div class="access-icon">✅</div>
+  <div class="access-text">You're in. <span>This is your complete in-season S&C program — bookmark this page.</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">In-Season Soccer Program</div>
+  <h1 class="hero-title"><em>Stay Fast.</em><br>Stay Strong.<br>Stay On the Pitch.</h1>
+  <p class="hero-sub">Two sessions per week. Designed around 2-game weeks. Built to keep your speed, power, and strength while everyone else is breaking down.</p>
+  <div class="chips">
+    <div class="chip chip-blue">Speed + Power</div>
+    <div class="chip chip-green">Strength Maintenance</div>
+    <div class="chip chip-green">Injury Prevention</div>
+    <div class="chip">2 Sessions / Week</div>
+    <div class="chip">2 Games / Week</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- WHY THIS WORKS -->
+  <div class="section">
+    <div class="section-label">The Philosophy</div>
+    <div class="section-title">Why in-season S&C matters</div>
+    <div class="section-body">Most athletes stop lifting in-season because they're tired, busy, or their coach says training hard will make them slower. That's wrong on all three counts.</div>
+    <div class="section-body">Research is clear: athletes who do <em>zero</em> S&C in-season lose 10–20% of their off-season strength gains in 6–8 weeks. Strength loss means slower acceleration, lower jump height, and a significantly higher injury risk — especially hamstring strains and ACL injuries — in the second half of the season.</div>
+    <div class="info-box info-box-green"><strong>Two sessions per week is all you need.</strong> The goal in-season is not to get fitter. It's to maintain what you built and stay healthy. Less volume than off-season, same intensity. That's how you finish the season faster and stronger than you started it.</div>
+  </div>
+
+  <!-- HOW TO SCHEDULE -->
+  <div class="section">
+    <div class="section-label">Weekly Structure</div>
+    <div class="section-title">How to schedule your week</div>
+    <div class="section-body">With 2 games per week, S&C windows are tight. Here's the golden rule: <strong>never do strength work within 24 hours of a game</strong>, and <strong>never do speed work within 48 hours of a game.</strong></div>
+    <div class="section-body" style="margin-top:8px">Use this template as your starting point, then adjust to fit your actual game days:</div>
+
+    <div class="schedule-grid">
+      <div class="sg-day sg-rec">
+        <div class="sg-day-label">Mon</div>
+        <div class="sg-day-content">Recovery</div>
+      </div>
+      <div class="sg-day sg-sc">
+        <div class="sg-day-label">Tue</div>
+        <div class="sg-day-content">Session A Strength</div>
+      </div>
+      <div class="sg-day sg-match">
+        <div class="sg-day-label">Wed</div>
+        <div class="sg-day-content">⚽ GAME 1</div>
+      </div>
+      <div class="sg-day sg-rec">
+        <div class="sg-day-label">Thu</div>
+        <div class="sg-day-content">Recovery / Off</div>
+      </div>
+      <div class="sg-day sg-speed">
+        <div class="sg-day-label">Fri</div>
+        <div class="sg-day-content">Session B Speed</div>
+      </div>
+      <div class="sg-day sg-rec">
+        <div class="sg-day-label">Sat</div>
+        <div class="sg-day-content">Match Prep</div>
+      </div>
+      <div class="sg-day sg-match">
+        <div class="sg-day-label">Sun</div>
+        <div class="sg-day-content">⚽ GAME 2</div>
+      </div>
+    </div>
+
+    <div class="sg-note"><strong>Adjust based on your actual match days.</strong> Session A (Strength) always goes 2–3 days before the next game. Session B (Speed) always goes 2 days before the next game. When in doubt: strength before speed in the training week, both before games.</div>
+
+    <div class="info-box info-box-blue" style="margin-top:14px"><strong>Heavy match week?</strong> If you have 3+ games in a week or a tournament, drop to Session A only (the strength + prehab session). Protect your legs. The speed session is the first thing to cut when load is high.</div>
+  </div>
+
+  <!-- SESSION A -->
+  <div class="session-block session-block-a" id="session-a">
+    <div class="sess-tag">Session A</div>
+    <div class="sess-name">Strength + Injury Prevention</div>
+    <div class="sess-sub">~50 minutes · 2–3 days before your next game</div>
+    <div class="sess-chips">
+      <div class="sess-chip">Compound Strength</div>
+      <div class="sess-chip">Hamstring Protection</div>
+      <div class="sess-chip">Adductor Work</div>
+      <div class="sess-chip">Core</div>
+    </div>
+    <div class="sess-goal"><strong>Goal:</strong> Maintain the strength you built in pre-season. Keep the hamstrings and adductors loaded so they stay resilient through the full season. Short, sharp, and effective — no junk volume.</div>
+  </div>
+
+  <div class="session-card">
+    <div class="block-label">Warm-Up — 8 min</div>
+    <div class="cond-block" style="margin-top:0">
+      <div class="cond-detail">5 min light jog or bike → Leg swings (front/back + side/side, 10 each) → Bodyweight squat × 10 → Hip hinge × 10 → Lateral band walk × 10 each direction → Done. Go.</div>
+    </div>
+
+    <div class="block-label">Block A — Lower Strength</div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">A1</div>
+      <div class="ex-body">
+        <div class="ex-name">Trap Bar Deadlift</div>
+        <div class="ex-note">Your primary strength movement. Feet hip-width inside the bar. Push the floor away — don't think about pulling the bar up. Stand tall at the top. Hinge back down with control. This is the best single exercise for in-season lower body strength maintenance.</div>
+        <div class="ex-params">
+          <div class="param param-str">3 × 5</div>
+          <div class="param">RPE 7–8</div>
+          <div class="param">Rest 2 min</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">A2</div>
+      <div class="ex-body">
+        <div class="ex-name">Rear-Foot Elevated Split Squat (RFESS)</div>
+        <div class="ex-note">Back foot elevated on bench, DBs in hands. Drop straight down — don't lean forward, don't let your front knee cave in. Two sets only. This is single-leg loading in a fatigued in-season body — volume is intentionally low. Quality over quantity.</div>
+        <div class="ex-params">
+          <div class="param param-str">2 × 8 each</div>
+          <div class="param">RPE 6–7</div>
+          <div class="param">Rest 90s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-label">Block B — Upper Maintenance</div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">B1</div>
+      <div class="ex-body">
+        <div class="ex-name">DB Bench Press</div>
+        <div class="ex-note">Maintain strength — use the same weight as pre-season Phase 2 or close to it. Controlled descent (2s), explosive press. This is not the priority in-season, but neglecting it leads to upper body strength loss over a long season.</div>
+        <div class="ex-params">
+          <div class="param param-str">3 × 6–8</div>
+          <div class="param">RPE 6–7</div>
+          <div class="param">Rest 75s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">B2</div>
+      <div class="ex-body">
+        <div class="ex-name">1-Arm DB Row</div>
+        <div class="ex-note">Knee and hand on bench. Pull elbow to hip. Keep torso still. This superpairs with bench — alternating keeps rest time efficient without rushing the session.</div>
+        <div class="ex-params">
+          <div class="param param-str">3 × 8 each</div>
+          <div class="param">RPE 6</div>
+          <div class="param">Rest 75s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-label">Block C — Injury Prevention <span class="ex-tag ex-tag-prehab" style="margin-left:6px">Non-Negotiable</span></div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">C1</div>
+      <div class="ex-body">
+        <div class="ex-name">Nordic Hamstring Curl (Eccentric)</div>
+        <div class="ex-note">This one exercise reduces hamstring strain risk by up to 51% (van Dyk et al., meta-analysis). Kneel, partner holds ankles or hook under a fixed bar. Lower as slowly as possible — aim for 4 seconds. Catch with hands at the bottom. Assist back to top. The lowering phase is the entire point.</div>
+        <div class="ex-params">
+          <div class="param param-str">3 × 5</div>
+          <div class="param">4s eccentric</div>
+          <div class="param">Rest 90s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">C2</div>
+      <div class="ex-body">
+        <div class="ex-name">Copenhagen Plank</div>
+        <div class="ex-note">Side plank, top foot or knee on bench. Hold. Adductor loading — the most evidence-backed groin injury prevention exercise in soccer. Do both sides every session, every week. This is your groin insurance policy for a long season.</div>
+        <div class="ex-params">
+          <div class="param param-str">3 × 20s each</div>
+          <div class="param">Rest 45s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-label">Block D — Core</div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">D1</div>
+      <div class="ex-body">
+        <div class="ex-name">Dead Bug</div>
+        <div class="ex-note">On back, lower back pressed flat. Opposite arm + leg lower slowly, breathe out throughout. Core braced the entire time. This is spinal stability — the foundation all athletic movement comes from.</div>
+        <div class="ex-params">
+          <div class="param param-str">3 × 8 each</div>
+          <div class="param">Rest 45s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-a">D2</div>
+      <div class="ex-body">
+        <div class="ex-name">Pallof Press</div>
+        <div class="ex-note">Cable or band anchored to side. Press straight out from chest — hold 2 seconds — return. Body resists rotation throughout. Anti-rotation core training is directly specific to cutting, shielding, and change of direction — all major in-season demands.</div>
+        <div class="ex-params">
+          <div class="param param-str">3 × 10 each</div>
+          <div class="param">Rest 45s</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION B -->
+  <div class="session-block session-block-b" id="session-b">
+    <div class="sess-tag">Session B</div>
+    <div class="sess-name">Speed + Power</div>
+    <div class="sess-sub">~40 minutes · 2 days before your next game</div>
+    <div class="sess-chips">
+      <div class="sess-chip">Sprint Work</div>
+      <div class="sess-chip">Box Jumps</div>
+      <div class="sess-chip">Broad Jumps</div>
+      <div class="sess-chip">Med Ball</div>
+    </div>
+    <div class="sess-goal"><strong>Goal:</strong> Maintain your sprint speed and explosive power. Volume is low — quality is everything. Every rep must be 95%+ effort. If quality drops, the session ends. This is the session most in-season athletes skip. That's why they're slower in November than they were in September.</div>
+  </div>
+
+  <div class="session-card">
+    <div class="block-label">Sprint Warm-Up — 10 min (Required)</div>
+    <div class="cond-block" style="margin-top:0">
+      <div class="cond-detail">
+        2 min easy jog → High knees 2×20yd → Butt kicks 2×20yd → A-march 2×20yd → Leg swings front/back + side/side →
+        <strong>4 build-ups:</strong> 40yd starting at 60%, building to 90% by the end. Walk back after each. This is not optional — cold muscles and sprinting is how hamstrings get pulled.
+      </div>
+    </div>
+
+    <div class="block-label">Sprint Block — Absolute max effort. Full rest between every single rep.</div>
+
+    <div class="sprint-card">
+      <div class="sprint-header">
+        <div class="sprint-title">Speed Rule: Full Recovery Only</div>
+        <div class="sprint-rule">If you're not fully recovered, wait longer. Tired sprints train bad mechanics and accomplish nothing.</div>
+      </div>
+
+      <div class="ex-row" style="border-top:none">
+        <div class="ex-num ex-num-b">S1</div>
+        <div class="ex-body">
+          <div class="ex-name">10-Yard Sprint</div>
+          <div class="ex-note">Explosive standing start. Lean aggressively into your first step. Max effort on every rep. Walk back, take your time, go again when fully ready.</div>
+          <div class="ex-params">
+            <div class="param param-spd">4–6 reps</div>
+            <div class="param">Walk-back recovery</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-row">
+        <div class="ex-num ex-num-b">S2</div>
+        <div class="ex-body">
+          <div class="ex-name">20-Yard Sprint</div>
+          <div class="ex-note">Acceleration + early max velocity. Drive the first 10 yards, let your stride open up for the back 10. Relax your hands, jaw, and face — tension kills speed.</div>
+          <div class="ex-params">
+            <div class="param param-spd">4 reps</div>
+            <div class="param">Walk-back + 30s extra</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-row">
+        <div class="ex-num ex-num-b">S3</div>
+        <div class="ex-body">
+          <div class="ex-name">40-Yard Sprint</div>
+          <div class="ex-note">Max-velocity exposure. Two reps — full 3-minute rest between each. These are the most important reps of the week for maintaining your top-end speed. Don't skip them, don't rush them.</div>
+          <div class="ex-params">
+            <div class="param param-spd">2 reps</div>
+            <div class="param">3 min rest each</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-label">Power Block — Full recovery between sets</div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-b">P1</div>
+      <div class="ex-body">
+        <div class="ex-name">Box Jump — Max Height</div>
+        <div class="ex-note">Max effort every rep. Full arm swing, full leg extension at takeoff. Land on box in a partial squat. Step down between reps (don't jump down). 90-second rest between sets — these are neuromuscular, not cardio.</div>
+        <div class="ex-params">
+          <div class="param param-spd">3 × 4</div>
+          <div class="param">90s between sets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-b">P2</div>
+      <div class="ex-body">
+        <div class="ex-name">Broad Jump</div>
+        <div class="ex-note">Max distance every rep. Land in a stable athletic position — absorb the landing, don't crash into it. Soft landing = better deceleration mechanics = fewer knee injuries in-season.</div>
+        <div class="ex-params">
+          <div class="param param-spd">3 × 3</div>
+          <div class="param">90s between sets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-row">
+      <div class="ex-num ex-num-b">P3</div>
+      <div class="ex-body">
+        <div class="ex-name">Med Ball Rotational Throw (Wall)</div>
+        <div class="ex-note">Stand side-on to wall, 3–4 ft away. Load the back hip, explode from the hips (not the arms), and throw hard into the wall. Hip power — directly specific to shooting, turning, and winning physical duels. 4 reps each side.</div>
+        <div class="ex-params">
+          <div class="param param-spd">3 × 4 each side</div>
+          <div class="param">60s between sets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-label">Cool-Down — 5 min</div>
+    <div class="cond-block" style="margin-top:0; margin-bottom:18px">
+      <div class="cond-detail">90/90 hip stretch × 60s each side → Standing quad stretch × 30s each → Standing hip flexor stretch × 30s each → Walk 2 min. Done.</div>
+    </div>
+  </div>
+
+  <!-- 4-WEEK PROGRESSION -->
+  <div class="section">
+    <div class="section-label">Week by Week</div>
+    <div class="section-title">4-week progression</div>
+    <div class="section-body">This 4-week block can be repeated for as long as your season runs. Deload at Week 4, then restart Week 1 slightly heavier.</div>
+
+    <table class="prog-table">
+      <thead>
+        <tr><th>Week</th><th>Session A — Strength</th><th>Session B — Speed</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Week 1</td>
+          <td>Establish baseline loads. RPE 7 on Trap Bar DL. Keep prehab volume exactly as written.</td>
+          <td>6×10yd, 4×20yd, 2×40yd. Quality over quantity. If tired, cut 2 reps from 10yd set.</td>
+        </tr>
+        <tr>
+          <td>Week 2</td>
+          <td>Add 5–10 lbs to Trap Bar DL and RFESS where RPE allows. Prehab stays the same.</td>
+          <td>Same volume as Week 1. Focus on quality and explosiveness — time yourself on the 40yd if possible.</td>
+        </tr>
+        <tr>
+          <td>Week 3</td>
+          <td>Maintain Week 2 loads. If match load is high, reduce RFESS to 1×8 each. Nordic and Copenhagen stay.</td>
+          <td>Same volume. If legs are heavy from matches, cut 40yd reps to 1. Never skip the 10yd work.</td>
+        </tr>
+        <tr>
+          <td>Week 4 — Deload</td>
+          <td>Reduce sets by 1 on all lifts. Keep intensity (same weight). Nordic and Copenhagen stay at full dose.</td>
+          <td>4×10yd, 3×20yd only. No 40yd sprints. Light, sharp, done in 25 min. Legs freshen up for next block.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box info-box-green" style="margin-top:14px"><strong>Repeating the block:</strong> After Week 4 deload, go back to Week 1 and add 5–10 lbs to your Trap Bar DL baseline. Your sprint times should be similar or faster. If they're getting slower over the season, sleep and recovery are the first things to address.</div>
+  </div>
+
+  <!-- KEY RULES -->
+  <div class="section">
+    <div class="section-label">Non-Negotiables</div>
+    <div class="section-title">In-season rules</div>
+    <ul class="rules-list">
+      <li><span class="rule-icon">🏃</span><span class="rule-text"><strong>Session B before Session A in the training week.</strong> Speed work needs a fresher nervous system than strength work. If you can only do one session this week, do Session B.</span></li>
+      <li><span class="rule-icon">⚽</span><span class="rule-text"><strong>Games take priority.</strong> If you're exhausted 48 hours before a game, skip or shorten the session. Arriving fresh to the game is always the right call.</span></li>
+      <li><span class="rule-icon">🔴</span><span class="rule-text"><strong>Never skip the prehab block.</strong> Nordic curls and Copenhagen planks in Block C are the most important exercises in this program. A hamstring strain or groin pull ends your season — 10 minutes of prevention every session is non-negotiable.</span></li>
+      <li><span class="rule-icon">⚡</span><span class="rule-text"><strong>Sprint quality over sprint quantity.</strong> Five perfect 10-yard sprints at 100% are worth more than ten tired ones at 70%. If you're not fully recovered between reps, wait longer.</span></li>
+      <li><span class="rule-icon">😴</span><span class="rule-text"><strong>Sleep is your number one recovery tool.</strong> With 2 games per week and 2 S&C sessions, you're accumulating high load. 8–9 hours is not a luxury — it's part of the program.</span></li>
+      <li><span class="rule-icon">🍽️</span><span class="rule-text"><strong>Eat for your load.</strong> Match weeks are high-calorie weeks. Skimping on carbs before games and protein after sessions is the fastest way to feel flat. Fuel the work you're doing.</span></li>
+    </ul>
+  </div>
+
+  <!-- PAIN SIGNALS -->
+  <div class="section">
+    <div class="section-label">Health First</div>
+    <div class="section-title">When to stop and get help</div>
+    <div class="section-body">Muscle soreness is normal. These are not:</div>
+    <ul class="rules-list" style="margin-top:10px">
+      <li><span class="rule-icon">🚨</span><span class="rule-text"><strong>Sharp pain in the back of the thigh during sprints or Nordic curls</strong> — stop immediately. Could be a hamstring strain.</span></li>
+      <li><span class="rule-icon">🚨</span><span class="rule-text"><strong>Groin pain during Copenhagen planks or kicking</strong> — reduce load and get it assessed.</span></li>
+      <li><span class="rule-icon">🚨</span><span class="rule-text"><strong>Knee pain that worsens during or after squatting</strong> — don't push through it. Assess before the next session.</span></li>
+      <li><span class="rule-icon">🚨</span><span class="rule-text"><strong>Any pain that gets worse rep-by-rep during a set</strong> — rack the weight and stop that exercise for the day.</span></li>
+    </ul>
+    <div class="info-box info-box-green" style="margin-top:14px">When in doubt — DM <strong>@performance.bacon</strong>. I'll tell you whether to push through, modify, or refer out. Don't guess.</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-badge">Want More?</div>
+    <div class="cta-title">Get a program built for you</div>
+    <div class="cta-body">This is a general in-season template. A program built specifically for your position, your schedule, and your weak points is meaningfully different. DM Coach Bacon and say <strong>"HELP"</strong> — we'll build something custom.</div>
+    <a class="btn btn-primary" href="https://ig.me/m/performance.bacon" target="_blank" rel="noopener noreferrer">DM @performance.bacon &rarr;</a>
+    <div class="cta-note">@performance.bacon · Say "HELP" to start</div>
+  </div>
+
+</div><!-- /wrap -->
+
+<div class="footer">
+  Performance Bacon S&C &copy; 2026<br>
+  For training reference only — not medical advice. If you experience sharp or worsening pain, stop training and consult a medical professional.
+</div>
+
+</body>
+</html>
